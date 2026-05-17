@@ -53,7 +53,7 @@ export default function NewEvent() {
             <div style={{color:"#8A8580",fontSize:13,marginBottom:24}}>¿Qué coordinamos?</div>
             <form onSubmit={onSubmit}>
                 <div style={{marginBottom:14}}><label style={labelStyle}>Título</label><input type="text" value={title} onChange={e=>setTitle(e.target.value)} placeholder="Cena en casa de Pablo" required style={inputStyle}/></div>
-                <div style={{marginBottom:14}}><label style={labelStyle}>Descripción <span style={{fontWeight:300,textTransform:"none"}}}>(opcional)</span></label><textarea value={description} onChange={e=>setDescription(e.target.value)} placeholder="Traigan algo de picar..." rows={2} style={{...inputStyle,resize:"none",lineHeight:1.5}}/></div>
+                <div style={{marginBottom:14}}><label style={labelStyle}>Descripción <span style={{fontWeight:300,textTransform:"none"}}>(opcional)</span></label><textarea value={description} onChange={e=>setDescription(e.target.value)} placeholder="Traigan algo de picar..." rows={2} style={{...inputStyle,resize:"none",lineHeight:1.5}}/></div>
                 <div style={{marginBottom:8}}><label style={labelStyle}>Fechas propuestas</label></div>
                 <div style={{background:"#fff",border:"1px solid #E5E0D8",borderRadius:18,overflow:"hidden",marginBottom:12}}>
                     <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",padding:"12px 16px",borderBottom:"1px solid #E5E0D8"}}>
