@@ -29,4 +29,23 @@ export default function Login() {
                 <div style={{marginBottom:14}}>
                     <label style={{display:"block",fontSize:12,fontWeight:500,textTransform:"uppercase",letterSpacing:"0.06em",color:"#8A8580",marginBottom:6}}>Usuario</label>
                     <input type="text" value={username} onChange={e=>setUsername(e.target.value)} placeholder="tu_usuario" autoCapitalize="none" required
-                        style={{width:"100%",padding:"12px 16px",border:"1.5px solid #E5E0D8",borderRadius:10,fontSize:15,fontFamily:"'DM Sans',sans-serif",background:"#fff",color:"#1A1816",outline:"none",boxSizing:"bo
+                        style={{width:"100%",padding:"12px 16px",border:"1.5px solid #E5E0D8",borderRadius:10,fontSize:15,fontFamily:"'DM Sans',sans-serif",background:"#fff",color:"#1A1816",outline:"none",boxSizing:"border-box"}}
+                    />
+                </div>
+                <div style={{marginBottom:20}}>
+                    <label style={{display:"block",fontSize:12,fontWeight:500,textTransform:"uppercase",letterSpacing:"0.06em",color:"#8A8580",marginBottom:6}}>Contraseña</label>
+                    <input type="password" value={password} onChange={e=>setPassword(e.target.value)} placeholder="••••••••" required
+                        style={{width:"100%",padding:"12px 16px",border:"1.5px solid #E5E0D8",borderRadius:10,fontSize:15,fontFamily:"'DM Sans',sans-serif",background:"#fff",color:"#1A1816",outline:"none",boxSizing:"border-box"}}
+                    />
+                </div>
+                <button type="submit" disabled={loading}
+                    style={{width:"100%",padding:14,border:"none",borderRadius:30,fontFamily:"'Syne',sans-serif",fontSize:16,fontWeight:600,cursor:"pointer",background:"#1A1816",color:"#fff"}}>
+                    {loading ? "Entrando…" : "Entrar"}
+                </button>
+            </form>
+            <div style={{marginTop:24,textAlign:"center",fontSize:13,color:"#8A8580"}}>
+                ¿No tienes cuenta? <Link to="/register" style={{color:"#C85A2E",fontWeight:500}}>Regístrate</Link>
+            </div>
+        </div>
+    );
+}
