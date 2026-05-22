@@ -1,5 +1,5 @@
-import React, { createContext, useContext, useEffect, useState, useCallback } from "react";
-import api, { formatApiError } from "../lib/api";
+import React, { createContext, useContext, useEffect, useState, useCallback, useRef } from "react";
+import api, { formatApiError, setMemoryToken } from "../lib/api";
 
 const AuthContext = createContext(null);
 
@@ -22,7 +22,10 @@ export function AuthProvider({ children }) {
     const login = async (username, password) => {
         try {
             const { data } = await api.post("/auth/login", { username, password });
-            if (data?.token) localStorage.setItem("auth_token", data.token);
+            if (data?.token) {
+                setMemoryToken(data.token);
+                try { localStorage.setItem("auth_token", data.token); } catch {}
+            }
             setUser(data);
             return { ok: true };
         } catch (e) {
@@ -33,7 +36,10 @@ export function AuthProvider({ children }) {
     const register = async (payload) => {
         try {
             const { data } = await api.post("/auth/register", payload);
-            if (data?.token) localStorage.setItem("auth_token", data.token);
+            if (data?.token) {
+                setMemoryToken(data.token);
+                try { localStorage.setItem("auth_token", data.token); } catch {}
+            }
             setUser(data);
             return { ok: true };
         } catch (e) {
@@ -43,7 +49,8 @@ export function AuthProvider({ children }) {
 
     const logout = async () => {
         try { await api.post("/auth/logout"); } catch {}
-        localStorage.removeItem("auth_token");
+        setMemoryToken(null);
+        try { localStorage.removeItem("auth_token"); } catch {}
         setUser(false);
     };
 
