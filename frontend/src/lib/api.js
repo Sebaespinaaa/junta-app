@@ -3,13 +3,24 @@ import axios from "axios";
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 export const API = `${BACKEND_URL}/api`;
 
+// Token en memoria — funciona siempre, incluso en navegador privado
+let _memoryToken = null;
+
+export function setMemoryToken(token) {
+    _memoryToken = token;
+}
+
 const api = axios.create({
     baseURL: API,
     withCredentials: true,
 });
 
 api.interceptors.request.use((config) => {
-    const token = localStorage.getItem("auth_token");
+    // Primero usa el token en memoria, si no hay intenta localStorage
+    let token = _memoryToken;
+    if (!token) {
+        try { token = localStorage.getItem("auth_token"); } catch {}
+    }
     if (token) {
         config.headers = config.headers || {};
         config.headers.Authorization = `Bearer ${token}`;
